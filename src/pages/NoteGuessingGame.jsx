@@ -10,7 +10,7 @@ function NoteGuessingGame() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [score, setScore] = useState(0);
 
-  const fretboardData = getFretboard(12);
+  const fretboardData = getFretboard(11);
 
   function handleCellClick(stringIndex, fretIndex) {
     const correct = getNote(stringIndex, fretIndex) === currentNote;
@@ -33,16 +33,44 @@ function NoteGuessingGame() {
       <h1>Note Guessing Game</h1>
       <h2 className="note-to-guess">Find: {currentNote}</h2>
       <div className="neck">
-        <OpenStrings />
+        <OpenStrings
+          onCellClick={handleCellClick}
+          hasGuessed={hasGuessed}
+          highlightedCells={correctCells}
+        />
         <Fretboard
           fretboard={fretboardData}
           onCellClick={handleCellClick}
+          hasGuessed={hasGuessed}
           highlightedCells={correctCells}
         />
       </div>
-      <div className="game-info">
+      <div className="game-controls">
         <div className="score">Score: {score}</div>
-        <button type="button">Reset</button>
+        <button
+          type="button"
+          className={`next ${!hasGuessed ? "hidden" : ""}`}
+          onClick={() => {
+            setCurrentNote(getRandomNote());
+            setHasGuessed(false);
+            setIsCorrect(false);
+            setSelectedCell(null);
+          }}
+        >
+          Next
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setScore(0);
+            setCurrentNote(getRandomNote());
+            setHasGuessed(false);
+            setIsCorrect(false);
+            setSelectedCell(null);
+          }}
+        >
+          Reset
+        </button>
       </div>
     </>
   );

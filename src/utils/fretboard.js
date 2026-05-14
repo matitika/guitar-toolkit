@@ -35,7 +35,7 @@ export function getFretboard(numFrets) {
   for (let string = 0; string < NUM_STRINGS; string++) {
     const string_notes = [];
 
-    for (let fret = 0; fret < numFrets; fret++) {
+    for (let fret = 1; fret <= numFrets; fret++) {
       string_notes.push(getNote(string, fret));
     }
 
