@@ -1,3 +1,43 @@
+.neck {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem 1rem;
+}
+
+.open-strings {
+  padding: 0 10px;
+}
 .fretboard-grid {
   display: grid;
+  border: 2px solid #56596b;
+  background-color: #2c2e38;
+  width: 100%;
+}
+
+.note {
+  position: relative;
+  border-right: 2px solid white;
+}
+
+.note span {
+  position: relative;
+  z-index: 1;
+  color: floralwhite;
+}
+
+.note::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #56596b;
+  z-index: 0;
+}
+
+.dot {
+  border-top: 2px solid #56596b;
+  font-size: 0.5em;
+  line-height: 15px;
 }

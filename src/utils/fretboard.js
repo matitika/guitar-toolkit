@@ -14,6 +14,7 @@ export const NOTES = [
 ];
 const NUM_STRINGS = 6;
 export const STANDARD_TUNING = ["E", "A", "D", "G", "B", "E"];
+export const DOTS_FRETS = [3, 5, 7, 9, 12, 15, 17, 19, 21];
 
 /*
  * Returns the note on a specific string and fret
@@ -32,7 +33,7 @@ export function getFretboard(numFrets) {
   for (let string = 1; string <= NUM_STRINGS; string++) {
     const string_notes = [];
 
-    for (let fret = 0; fret <= numFrets; fret++) {
+    for (let fret = 1; fret <= numFrets; fret++) {
       string_notes.push(getNote(string, fret));
     }
 
