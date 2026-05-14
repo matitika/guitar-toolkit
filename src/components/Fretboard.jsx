@@ -1,7 +1,7 @@
 import "./Fretboard.css";
 import { DOTS_FRETS } from "../utils/fretboard";
 
-function Fretboard({ fretboard }) {
+function Fretboard({ fretboard, onCellClick, highlightedCells }) {
   return (
     <div
       className="fretboard-grid"
@@ -9,14 +9,18 @@ function Fretboard({ fretboard }) {
     >
       {fretboard.map((string, stringIndex) =>
         string.map((note, noteIndex) => (
-          <div key={`${stringIndex}-${noteIndex}`} className="note">
+          <div
+            key={`${stringIndex}-${noteIndex}`}
+            className={`note ${highlightedCells.some((cell) => cell.string === stringIndex && cell.fret === noteIndex) ? "highlighted" : ""}`}
+            onClick={() => onCellClick(stringIndex, noteIndex)}
+          >
             <span>{note}</span>
           </div>
         )),
       )}
 
       {fretboard[0].map((fret, fretIndex) => (
-        <div className="dot">
+        <div key={fretIndex} className="dot">
           {DOTS_FRETS.includes(fretIndex + 1) ? "●" : ""}
         </div>
       ))}

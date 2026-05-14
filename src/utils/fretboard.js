@@ -21,7 +21,9 @@ export const DOTS_FRETS = [3, 5, 7, 9, 12, 15, 17, 19, 21];
  * String 1 is high E and string 6 is Low E
  */
 export function getNote(string, fret) {
-  return NOTES[(NOTES.indexOf(STANDARD_TUNING.at(0 - string)) + fret) % 12];
+  return NOTES[
+    (NOTES.indexOf(STANDARD_TUNING.at(0 - (string + 1))) + fret) % 12
+  ];
 }
 
 /*
@@ -30,10 +32,10 @@ export function getNote(string, fret) {
 export function getFretboard(numFrets) {
   const fretboard = [];
 
-  for (let string = 1; string <= NUM_STRINGS; string++) {
+  for (let string = 0; string < NUM_STRINGS; string++) {
     const string_notes = [];
 
-    for (let fret = 1; fret <= numFrets; fret++) {
+    for (let fret = 0; fret < numFrets; fret++) {
       string_notes.push(getNote(string, fret));
     }
 
@@ -41,4 +43,11 @@ export function getFretboard(numFrets) {
   }
 
   return fretboard;
+}
+
+/*
+ * Picks and returns a random note from NOTES
+ */
+export function getRandomNote() {
+  return NOTES[Math.floor(Math.random() * NOTES.length)];
 }
