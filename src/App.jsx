@@ -1,16 +1,15 @@
-import { getFretboard } from "./utils/fretboard";
-import Fretboard from "./components/Fretboard";
-import OpenStrings from "./components/OpenStrings";
+import { Routes, Route } from "react-router-dom";
+import FretboardPage from "./pages/FretboardPage";
+import IntervalsPage from "./pages/IntervalsPage";
+import NoteGuessingGame from "./pages/NoteGuessingGame";
 
 function App() {
-  const fretboardData = getFretboard(11);
-
   return (
-    <div className="neck">
-      <OpenStrings />
-      <Fretboard fretboard={fretboardData} />
-    </div>
+    <Routes>
+      <Route path="/" element={<FretboardPage />} />
+      <Route path="/game" element={<NoteGuessingGame />} />
+      <Route path="/intervals" element={<IntervalsPage />} />
+    </Routes>
   );
 }
-
 export default App;
